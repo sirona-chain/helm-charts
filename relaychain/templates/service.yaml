@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: relaychain
+spec:
+    type: { { .Values.service.type } }
+    selector:
+        app: relaychain
+    ports:
+        - port: 30333
+          targetPort: 30333
+        - port: 9933
+          targetPort: 9933
+        - port: 9944
+          targetPort: 9944

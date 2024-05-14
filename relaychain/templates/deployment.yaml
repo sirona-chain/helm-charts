@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: relaychain
+spec:
+    replicas: { { .Values.replicaCount } }
+    selector:
+        matchLabels:
+            app: relaychain
+    template:
+        metadata:
+            labels:
+                app: relaychain
+        spec:
+            containers:
+                - name: relaychain
+                  image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+                  ports:
+                      - containerPort: 30333
+                      - containerPort: 9933
+                      - containerPort: 9944

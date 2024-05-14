@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+    repository: parity/polkadot
+    tag: latest
+    pullPolicy: IfNotPresent
+service:
+    type: LoadBalancer
+    port: 30333
+nodePorts:
+    rpc: 9933
+    ws: 9944

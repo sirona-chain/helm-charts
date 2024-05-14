@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: parachain
+spec:
+    replicas: { { .Values.replicaCount } }
+    selector:
+        matchLabels:
+            app: parachain
+    template:
+        metadata:
+            labels:
+                app: parachain
+        spec:
+            containers:
+                - name: parachain
+                  image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+                  ports:
+                      - containerPort: 30333
+                      - containerPort: 9934
+                      - containerPort: 9945

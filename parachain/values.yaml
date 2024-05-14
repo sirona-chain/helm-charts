@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+    repository: your-parachain-image
+    tag: latest
+    pullPolicy: IfNotPresent
+service:
+    type: LoadBalancer
+    port: 30333
+nodePorts:
+    rpc: 9934
+    ws: 9945

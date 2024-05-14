@@ -1,0 +1,27 @@
+name: Release Helm Charts
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Helm
+              uses: azure/setup-helm@v1
+
+            - name: Package Helm Charts
+              run: helm package charts/*
+
+            - name: Publish Helm Charts
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: "*.tgz"
+                  tag: ${{ github.ref }}
